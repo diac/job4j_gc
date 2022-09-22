@@ -5,16 +5,16 @@ import java.util.*;
 
 public class UserGenerator implements Generate {
 
-    public static final String PATH_NAMES = "src/main/java/ru/job4j/gc/leak/files/names.txt";
-    public static final String PATH_SURNAMES = "src/main/java/ru/job4j/gc/leak/files/surnames.txt";
-    public static final String PATH_PATRONS = "src/main/java/ru/job4j/gc/leak/files/patr.txt";
+    private static final String PATH_NAMES = "src/main/java/ru/job4j/gc/leak/files/names.txt";
+    private static final String PATH_SURNAMES = "src/main/java/ru/job4j/gc/leak/files/surnames.txt";
+    private static final String PATH_PATRONS = "src/main/java/ru/job4j/gc/leak/files/patr.txt";
 
-    public static final String SEPARATOR = " ";
-    public static final int NEW_USERS = 1000;
+    private static final String SEPARATOR = " ";
+    private static final int NEW_USERS = 1000;
 
-    public List<String> names;
-    public List<String> surnames;
-    public List<String> patrons;
+    private List<String> names;
+    private List<String> surnames;
+    private List<String> patrons;
     private Set<User> users = new HashSet<>();
     private Random random;
 
