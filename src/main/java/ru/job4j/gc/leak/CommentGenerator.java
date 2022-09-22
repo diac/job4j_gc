@@ -46,9 +46,13 @@ public class CommentGenerator implements Generate {
         random.ints(0, phrases.size())
                 .distinct().limit(3).forEach(ints::add);
         for (int i = 0; i < COUNT; i++) {
-            String comment = phrases.get(ints.get(0)) + SEPARATOR
-                    + phrases.get(ints.get(1)) + SEPARATOR
-                    + phrases.get(ints.get(2));
+            StringBuilder builder = new StringBuilder();
+            String comment = builder.append(phrases.get(ints.get(0)))
+                    .append(SEPARATOR)
+                    .append(phrases.get(ints.get(1)))
+                    .append(SEPARATOR)
+                    .append(phrases.get(ints.get(2)))
+                    .toString();
             comments.add(new Comment(comment,
                     userGenerator.randomUser()));
         }
