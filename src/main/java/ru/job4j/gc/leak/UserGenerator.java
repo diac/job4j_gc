@@ -12,10 +12,10 @@ public class UserGenerator implements Generate {
     public static final String SEPARATOR = " ";
     public static final int NEW_USERS = 1000;
 
-    public static List<String> names;
-    public static List<String> surnames;
-    public static List<String> patrons;
-    private static Set<User> users = new HashSet<>();
+    public List<String> names;
+    public List<String> surnames;
+    public List<String> patrons;
+    private Set<User> users = new HashSet<>();
     private Random random;
 
     public UserGenerator(Random random) {
@@ -64,7 +64,7 @@ public class UserGenerator implements Generate {
         return randomUser;
     }
 
-    public static List<User> getUsers() {
+    public List<User> getUsers() {
         return new ArrayList<>(users);
     }
 }
