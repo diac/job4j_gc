@@ -34,9 +34,4 @@ public class User {
     public int hashCode() {
         return Objects.hash(name);
     }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
 }

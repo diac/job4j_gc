@@ -15,7 +15,7 @@ public class UserGenerator implements Generate {
     private List<String> names;
     private List<String> surnames;
     private List<String> patrons;
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
     private Random random;
 
     public UserGenerator(Random random) {
@@ -27,14 +27,10 @@ public class UserGenerator implements Generate {
     public void generate() {
         users.clear();
         for (int i = 0; i < NEW_USERS; i++) {
-            StringBuilder builder = new StringBuilder();
-            String userName = builder.append(random.nextInt(surnames.size()))
-                    .append(SEPARATOR)
-                    .append(names.get(random.nextInt(names.size())))
-                    .append(SEPARATOR)
-                    .append(patrons.get(random.nextInt(patrons.size())))
-                    .toString();
-            users.add(new User(userName));
+            users.add(new User(
+                    surnames.get(random.nextInt(surnames.size())) + SEPARATOR
+                            + names.get(random.nextInt(names.size())) + SEPARATOR
+                            + patrons.get(random.nextInt(patrons.size()))));
         }
     }
 
@@ -49,22 +45,10 @@ public class UserGenerator implements Generate {
     }
 
     public User randomUser() {
-        int currentIndex = 0;
-        int randomNumber = random.nextInt(users.size());
-        User randomUser = null;
-        Iterator<User> iterator =  users.iterator();
-        while (iterator.hasNext()) {
-            if (currentIndex == randomNumber) {
-                randomUser = iterator.next();
-                break;
-            }
-            iterator.next();
-            currentIndex++;
-        }
-        return randomUser;
+        return users.get(random.nextInt(users.size()));
     }
 
     public List<User> getUsers() {
-        return new ArrayList<>(users);
+        return users;
     }
 }
