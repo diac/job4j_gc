@@ -1,9 +1,7 @@
 package ru.job4j.gc.leak;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class UserGenerator implements Generate {
 
@@ -17,7 +15,7 @@ public class UserGenerator implements Generate {
     public static List<String> names;
     public static List<String> surnames;
     public static List<String> patrons;
-    private static List<User> users = new ArrayList<>();
+    private static Set<User> users = new HashSet<>();
     private Random random;
 
     public UserGenerator(Random random) {
@@ -29,10 +27,14 @@ public class UserGenerator implements Generate {
     public void generate() {
         users.clear();
         for (int i = 0; i < NEW_USERS; i++) {
-            users.add(new User(
-                    surnames.get(random.nextInt(surnames.size())) + SEPARATOR
-                            + names.get(random.nextInt(names.size())) + SEPARATOR
-                            + patrons.get(random.nextInt(patrons.size()))));
+            StringBuilder builder = new StringBuilder();
+            String userName = builder.append(random.nextInt(surnames.size()))
+                    .append(SEPARATOR)
+                    .append(names.get(random.nextInt(names.size())))
+                    .append(SEPARATOR)
+                    .append(patrons.get(random.nextInt(patrons.size())))
+                    .toString();
+            users.add(new User(userName));
         }
     }
 
@@ -47,10 +49,22 @@ public class UserGenerator implements Generate {
     }
 
     public User randomUser() {
-        return users.get(random.nextInt(users.size()));
+        int currentIndex = 0;
+        int randomNumber = random.nextInt(users.size());
+        User randomUser = null;
+        Iterator<User> iterator =  users.iterator();
+        while (iterator.hasNext()) {
+            if (currentIndex == randomNumber) {
+                randomUser = iterator.next();
+                break;
+            }
+            iterator.next();
+            currentIndex++;
+        }
+        return randomUser;
     }
 
     public static List<User> getUsers() {
-        return users;
+        return new ArrayList<>(users);
     }
 }

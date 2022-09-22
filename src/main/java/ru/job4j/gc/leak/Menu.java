@@ -51,6 +51,8 @@ public class Menu {
                 String text = scanner.nextLine();
                 System.out.println(COUNT);
                 String count = scanner.nextLine();
+                userGenerator.generate();
+                commentGenerator.generate();
                 for (int i = 0; i < Integer.parseInt(count); i++) {
                     createPost(commentGenerator, userGenerator, postStore, text);
                 }
@@ -68,8 +70,6 @@ public class Menu {
 
     private static void createPost(CommentGenerator commentGenerator,
                                    UserGenerator userGenerator, PostStore postStore, String text) {
-        userGenerator.generate();
-        commentGenerator.generate();
         postStore.add(new Post(text, CommentGenerator.getComments()));
     }
 }
