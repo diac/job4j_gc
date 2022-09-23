@@ -16,8 +16,8 @@ public class Emulator {
         Output output = new ConsoleOutput();
         List<UserAction> actions = Arrays.asList(
                 new SetDirectoryAction(output),
-                new FileCacheFileAction(output),
-                new LoadFileContentsActionFile(output),
+                new CacheFileAction(output),
+                new LoadFileContentsAction(output),
                 new QuitAction(output)
         );
         Menu menu = new Menu(input, output, actions);
