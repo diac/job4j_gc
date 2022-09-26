@@ -38,4 +38,9 @@ public class SetDirectoryAction implements UserAction {
         }
         return true;
     }
+
+    @Override
+    public String cacheBehavior() {
+        return "create";
+    }
 }

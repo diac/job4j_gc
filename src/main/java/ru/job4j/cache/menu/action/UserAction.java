@@ -7,4 +7,8 @@ public interface UserAction {
     String name();
 
     boolean execute(Input input);
+
+    default String cacheBehavior() {
+        return "default";
+    }
 }

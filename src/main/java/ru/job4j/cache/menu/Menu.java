@@ -52,13 +52,13 @@ public class Menu {
             System.out.println("Ошибка ввода");
         }
         UserAction action = actions.get(choice);
-        if (action instanceof UserFileCacheAction) {
+        if ("set".equals(action.cacheBehavior())) {
             ((UserFileCacheAction) action).setCache(cache);
         }
-        if (action instanceof SetDirectoryAction) {
+        if ("create".equals(action.cacheBehavior())) {
             run = createCache();
         } else {
-            run = action.execute(input); /* TODO */
+            run = action.execute(input);
         }
         return run;
     }
